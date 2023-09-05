@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 export const AppRoutes: Routes = [
-  { path: '', redirectTo: 'tradies', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),

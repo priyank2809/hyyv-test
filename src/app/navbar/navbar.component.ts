@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.selectedMenu = "Find Tradies";
+    this.selectedMenu = "Home";
   }
 
   menuClick(item: any) {
