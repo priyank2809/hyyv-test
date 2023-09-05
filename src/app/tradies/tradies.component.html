@@ -1,0 +1,638 @@
+<div class="w-full py-3 border-b border-gray-300">
+    <div class="continer">
+      <ul class="flex flex-wrap">
+
+        <li 
+          (click)="traderClick(trade)"
+          [ngClass]="trade.selected ? 'active' : ''"
+          class="service_box group" *ngFor="let trade of traderLists">
+          <ng-container *ngIf="trade.has_subtrade">
+            <div class="service_icon" >
+              <img [src]="trade.png" class="mx-auto custom-height-width" alt="sevice1" />
+            </div>
+            <p class="service_titel">{{trade.name}}</p>
+          </ng-container>
+        </li>
+
+        <!-- <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice2.png" class="mx-auto " alt="sevice1" />
+          </div>
+          <p class="service_titel">House Raising/removal</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice3.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Building & Pest Inspections</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice4.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Carpet Layer</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice5.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Security And Data Install</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice6.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Concreter</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice7.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Demolition</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice8.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Concrete Polishing</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice9.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Fascia & Gutter Install</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice10.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Fencer</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice11.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Shower Screens And Mirrors</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice12.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Carpenter</p>
+        </li>
+        <li class="service_box group">
+          <div class="service_icon">
+            <img src="../../assets/images/sevice13.png" class="mx-auto" alt="sevice1" />
+          </div>
+          <p class="service_titel">Builder</p>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="w-full py-3 border-b border-gray-300" *ngIf="selectedTrades && selectedTrades.subTrade && selectedTrades.subTrade.length > 0">
+    <div class="continer">
+
+      <ul class="-mx-1.5 -my-1 flex flex-wrap">
+        <li class="px-1 py-1" *ngFor="let item of selectedTrades.subTrade" (click)="subTradeClick(item)">
+          <a  
+            [ngClass]="this.selectedsubTrader == item ? 'active' : ''"            
+            class="service_2 group"> 
+            {{item}} 
+            <svg
+              class="group-hover:w-auto group-hover:inline-block" 
+              width="13" 
+              height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <!-- <li class="px-1 py-1">
+          <a href="" class="service_2 group">Bathroom Renovations <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Budget, Timing & Cost Estimation <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Civil Works Management <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Commercial <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Architectural Homes <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Bathroom Renovations <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li>
+        <li class="px-1 py-1">
+          <a href="" class="service_2 group">Budget, Timing & Cost Estimation <svg class="group-hover:w-auto group-hover:inline-block" width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.96691 8.31326L0.991911 5.33826L0.000244141 6.32993L3.96691 10.2966L12.4669 1.7966L11.4752 0.804932L3.96691 8.31326Z" fill="white" />
+            </svg>
+          </a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="w-full py-3 border-b border-gray-300">
+    <div class="continer">
+      <div class="w-full">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex_box">
+          <label for="search" class="search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1_777)">
+                <path d="M10.2396 10.0124C9.36875 10.0124 8.65625 9.29987 8.65625 8.42904C8.65625 7.5582 9.36875 6.8457 10.2396 6.8457C11.1104 6.8457 11.8229 7.5582 11.8229 8.42904C11.8229 9.29987 11.1104 10.0124 10.2396 10.0124ZM14.9896 8.58737C14.9896 5.71362 12.8917 3.67904 10.2396 3.67904C7.5875 3.67904 5.48958 5.71362 5.48958 8.58737C5.48958 10.4399 7.03333 12.894 10.2396 15.8232C13.4458 12.894 14.9896 10.4399 14.9896 8.58737ZM10.2396 2.0957C13.5646 2.0957 16.5729 4.64487 16.5729 8.58737C16.5729 11.2157 14.4592 14.327 10.2396 17.929C6.02 14.327 3.90625 11.2157 3.90625 8.58737C3.90625 4.64487 6.91458 2.0957 10.2396 2.0957Z" fill="#222222" />
+              </g>
+              <defs>
+                <clipPath id="clip0_1_777">
+                  <rect width="19" height="19" fill="white" transform="translate(0.738281 0.511719)" />
+                </clipPath>
+              </defs>
+            </svg>
+            <input type="text" id="location" formControlName="location" placeholder="Search by location" />
+            <input type="hidden" id="trade" formControlname="trade" />
+          </label>
+          <button class="btn_primary search_btn group" type="submit">
+            <svg class="fill-white group-hover:fill-[#611F69]" width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.15999 8.28874H9.72188L13.2708 11.8451L12.2111 12.9048L8.65507 9.35564V8.79374L8.46303 8.59459C7.65229 9.29163 6.59965 9.71127 5.45463 9.71127C2.90137 9.71127 0.831787 7.64149 0.831787 5.08806C0.831787 2.53462 2.90137 0.464844 5.45463 0.464844C8.00789 0.464844 10.0775 2.53462 10.0775 5.08806C10.0775 6.23319 9.65784 7.28586 8.96087 8.0967L9.15999 8.28874ZM2.2542 5.08806C2.2542 6.8591 3.6837 8.28874 5.45463 8.28874C7.22557 8.28874 8.65507 6.8591 8.65507 5.08806C8.65507 3.31701 7.22557 1.88737 5.45463 1.88737C3.6837 1.88737 2.2542 3.31701 2.2542 5.08806Z" />
+            </svg>
+            <span>Search</span>
+          </button>
+          <span class="text-[#E0E0E0] inline-block">|</span>
+          <button class="text-sm text-[#595959] font-medium" type="button" (click)="reset()">Reset All</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="w-full py-2 bgcolor" *ngIf="this.userLists && this.userLists.length > 0">
+    <div class="continer">
+      <p class="text-sm text-[#797979] py-2">{{this.userLists.length}} Tradies Available</p>
+      <div class="flex flex-wrap -m-3">
+        <div class="p-3 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4" *ngFor="let trade of this.userLists">
+          <div class="card">
+            <div class="w-full space-y-3">
+              <div class="flex items-center space-x-2">
+                <div class="pro_img">
+                  <img src="../../assets/images/card_pro1.png" alt="pro1" class="w-full h-full object-cover">
+                </div>
+                <p class="text-sm text-[#222222] font-medium">{{ trade.firstName }} {{ trade.lastName }}</p>
+                <span class="flex items-center space-x-1">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16377 11.6742L11.4607 14.3503L10.3204 9.3066L14.1166 5.91308L9.11752 5.47543L7.16377 0.71875L5.21002 5.47543L0.210938 5.91308L4.00719 9.3066L2.86692 14.3503L7.16377 11.6742Z" fill="#FFCC34" />
+                  </svg>
+                  <span class="text-[#595959]">{{ trade.currentAverageRating }}</span>
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1_51)">
+                        <path d="M11.1562 8.71484V4.46484L9.03125 2.33984L6.90625 4.46484V5.88151H2.65625V15.7982H15.4062V8.71484H11.1562ZM5.48958 14.3815H4.07292V12.9648H5.48958V14.3815ZM5.48958 11.5482H4.07292V10.1315H5.48958V11.5482ZM5.48958 8.71484H4.07292V7.29818H5.48958V8.71484ZM9.73958 14.3815H8.32292V12.9648H9.73958V14.3815ZM9.73958 11.5482H8.32292V10.1315H9.73958V11.5482ZM9.73958 8.71484H8.32292V7.29818H9.73958V8.71484ZM9.73958 5.88151H8.32292V4.46484H9.73958V5.88151ZM13.9896 14.3815H12.5729V12.9648H13.9896V14.3815ZM13.9896 11.5482H12.5729V10.1315H13.9896V11.5482Z" fill="#595959" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_1_51">
+                          <rect width="17" height="17" fill="white" transform="translate(0.53125 0.923828)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">4 kms from Brisbane City, QLD</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 pl-1">
+                    <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.02865 0.691406C2.2874 0.691406 0.0703125 2.90849 0.0703125 5.64974C0.0703125 9.36849 5.02865 14.8581 5.02865 14.8581C5.02865 14.8581 9.98698 9.36849 9.98698 5.64974C9.98698 2.90849 7.7699 0.691406 5.02865 0.691406ZM5.02865 7.42057C4.05115 7.42057 3.25781 6.62724 3.25781 5.64974C3.25781 4.67224 4.05115 3.87891 5.02865 3.87891C6.00615 3.87891 6.79948 4.67224 6.79948 5.64974C6.79948 6.62724 6.00615 7.42057 5.02865 7.42057Z" fill="#595959" />
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">{{ trade.address }}</p>
+                </div>
+                <div class="flex space-x-6">
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">Licensed</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">ABN</p>
+                  </div>
+                </div>
+
+                <!-- Dynamic Tags Start, uncomment this section if you want dynamic binding-->
+                <!-- <div class="flex flex-wrap -m-1">
+                  <div class="inline-block" *ngFor="let item of trade.subTrade">
+                    <a href="javascript:void(0);" class="tag m-1">{{ item }}</a>
+                  </div>
+                </div> -->
+                <!-- Dynamic Tags End-->
+
+                <!-- Static Tags Start-->
+                <div class="flex flex-wrap -m-1">
+                  <a *ngFor="let sub of trade.subTrade | slice:0:4"  class="tag m-1">{{sub}}</a>
+                  <!-- <a  class="tag m-1">Commercial</a>
+                  <a  class="tag m-1">Garages</a>
+                  <a  class="tag m-1">Civil works management</a> -->
+                </div>
+                <!-- Static Tags End-->
+
+              </div>
+            </div>
+            <div class="flex -m-2">
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                  <img src="../../assets/images/pro1.png" alt="pro1" class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                  <img src="../../assets/images/pro2.png" alt="pro2" class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                  <img src="../../assets/images/pro3.png" alt="pro3" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- This Card is static to show remaining design part-->
+        <div class="p-3 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+          <div class="card">
+            <div class="w-full space-y-3">
+              <div class="flex items-center space-x-2">
+                <div class="pro_img">
+                    <img src="../../assets/images/card_pro2.png" alt="pro1" class="w-full h-full object-cover">
+                </div>
+                <p class="text-sm text-[#222222] font-medium">David N</p>
+                <span class="flex items-center space-x-1">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16377 11.6742L11.4607 14.3503L10.3204 9.3066L14.1166 5.91308L9.11752 5.47543L7.16377 0.71875L5.21002 5.47543L0.210938 5.91308L4.00719 9.3066L2.86692 14.3503L7.16377 11.6742Z" fill="#FFCC34" />
+                  </svg>
+                  <span class="text-[#595959]">4.4</span>
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1_51)">
+                        <path d="M11.1562 8.71484V4.46484L9.03125 2.33984L6.90625 4.46484V5.88151H2.65625V15.7982H15.4062V8.71484H11.1562ZM5.48958 14.3815H4.07292V12.9648H5.48958V14.3815ZM5.48958 11.5482H4.07292V10.1315H5.48958V11.5482ZM5.48958 8.71484H4.07292V7.29818H5.48958V8.71484ZM9.73958 14.3815H8.32292V12.9648H9.73958V14.3815ZM9.73958 11.5482H8.32292V10.1315H9.73958V11.5482ZM9.73958 8.71484H8.32292V7.29818H9.73958V8.71484ZM9.73958 5.88151H8.32292V4.46484H9.73958V5.88151ZM13.9896 14.3815H12.5729V12.9648H13.9896V14.3815ZM13.9896 11.5482H12.5729V10.1315H13.9896V11.5482Z" fill="#595959" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_1_51">
+                          <rect width="17" height="17" fill="white" transform="translate(0.53125 0.923828)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">4 kms from Brisbane City, QLD</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 pl-1">
+                    <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.02865 0.691406C2.2874 0.691406 0.0703125 2.90849 0.0703125 5.64974C0.0703125 9.36849 5.02865 14.8581 5.02865 14.8581C5.02865 14.8581 9.98698 9.36849 9.98698 5.64974C9.98698 2.90849 7.7699 0.691406 5.02865 0.691406ZM5.02865 7.42057C4.05115 7.42057 3.25781 6.62724 3.25781 5.64974C3.25781 4.67224 4.05115 3.87891 5.02865 3.87891C6.00615 3.87891 6.79948 4.67224 6.79948 5.64974C6.79948 6.62724 6.00615 7.42057 5.02865 7.42057Z" fill="#595959" />
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">Queensland, QLD</p>
+                </div>
+                <div class="flex space-x-6">
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">Licensed</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">ABN</p>
+                  </div>
+                </div>
+                <div class="flex flex-wrap -m-1">
+                  <a href="" class="tag m-1">Architectural Homes</a>
+                  <a href="" class="tag m-1">Commercial</a>
+                  <a href="" class="tag m-1">Garages</a>
+                  <a href="" class="tag m-1">Civil works management</a>
+                </div>
+              </div>
+            </div>
+            <div class="w-full rounded-md bg-[#F5F5F5] p-3 space-y-2">
+              <div class="flex items-start space-x-2">
+                <div class="pt-1">
+                  <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.903809 5.7487V12.832H4.44548V8.58203H7.27881V12.832H10.8205V5.7487L5.86214 2.20703L0.903809 5.7487Z" fill="#595959" />
+                    <path d="M7.27881 0.0820312V1.47745L12.2371 5.01911V5.7487H13.6538V7.16536H12.2371V8.58203H13.6538V9.9987H12.2371V12.832H16.4871V0.0820312H7.27881ZM13.6538 4.33203H12.2371V2.91536H13.6538V4.33203Z" fill="#595959" />
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs text-[#222222] font-medium">Job types</p>
+                  <p class="text-xs text-[#595959] font-medium">Residential | Commercial | Civil </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <div class="pt-1">
+                  <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1_199)">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7689 7.81286C13.7669 7.81286 14.5986 7.09058 14.8401 6.12009H10.6977C10.9391 7.09058 11.7708 7.81286 12.7689 7.81286Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4841 5.55588H15.0612C15.206 5.55588 15.3241 5.43172 15.3241 5.27939V5.26811C15.3241 5.11576 15.206 4.99163 15.0612 4.99163H14.9163C14.9163 4.15653 14.4817 3.43993 13.8431 3.04496V3.581C13.8431 3.73898 13.7251 3.86312 13.5748 3.86312C13.4246 3.86312 13.3065 3.73898 13.3065 3.581V2.81361C13.1348 2.76847 12.9578 2.73462 12.7699 2.73462C12.5821 2.73462 12.4051 2.76847 12.2334 2.81361V3.581C12.2334 3.73898 12.1153 3.86312 11.9651 3.86312C11.8148 3.86312 11.6968 3.73898 11.6968 3.581V3.04496C11.0582 3.43993 10.6236 4.15653 10.6236 4.99163H10.4841C10.3392 4.99163 10.2212 5.11576 10.2212 5.26811V5.28504C10.2212 5.43172 10.3392 5.55588 10.4841 5.55588Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2953 12.247H17.0635V11.1451C17.0635 9.67962 14.2035 8.94138 12.7708 8.94138C12.4184 8.94138 11.9795 8.9861 11.5181 9.0753C12.1247 9.51669 12.5189 10.0555 12.5189 10.6913V12.2469L11.2953 12.247Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.92427 6.91795C7.10253 6.91795 8.0844 6.06525 8.36944 4.91953H3.4791C3.76414 6.06525 4.74601 6.91795 5.92427 6.91795Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.22696 4.25342H8.6305C8.80151 4.25342 8.94087 4.10685 8.94087 3.92702V3.91369C8.94087 3.73384 8.80151 3.58729 8.6305 3.58729H8.45944C8.45944 2.60142 7.94637 1.75542 7.19252 1.28913V1.92196C7.19252 2.10847 7.05316 2.25502 6.87578 2.25502C6.6984 2.25502 6.55903 2.10847 6.55903 1.92196V1.01601C6.35633 0.962728 6.14731 0.92276 5.92555 0.92276C5.70384 0.92276 5.49482 0.962728 5.29212 1.01601V1.92196C5.29212 2.10847 5.15275 2.25502 4.97537 2.25502C4.79799 2.25502 4.65863 2.10847 4.65863 1.92196V1.28913C3.90478 1.75542 3.39171 2.60142 3.39171 3.58729H3.22696C3.05596 3.58729 2.9166 3.73384 2.9166 3.91369V3.93368C2.9166 4.10685 3.05596 4.25342 3.22696 4.25342Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.562988 10.9148C0.562988 9.14284 4.13799 8.25024 5.92884 8.25024C7.71969 8.25024 11.2947 9.14284 11.2947 10.9148V12.2471H0.562988V10.9148Z" fill="#595959" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1_199">
+                        <rect width="17" height="11.9" fill="white" transform="translate(0.195801 0.427734)" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs text-[#222222] font-medium">Resources</p>
+                  <p class="text-xs text-[#595959] font-medium">Tradesman: 4 | Apprentice: 5 | Labourer: 3 </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- This Card is static to show remaining design part-->
+
+        <!-- <div class="p-3 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+          <div class="card">
+            <div class="w-full space-y-3">
+              <div class="flex items-center space-x-2">
+                <div class="pro_img">
+                    <img src="../../assets/images/card_pro3.png" alt="card_pro1" class="w-full h-full object-cover" />
+                </div>
+                <p class="text-sm text-[#222222] font-medium">David N</p>
+                <span class="flex items-center space-x-1">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16377 11.6742L11.4607 14.3503L10.3204 9.3066L14.1166 5.91308L9.11752 5.47543L7.16377 0.71875L5.21002 5.47543L0.210938 5.91308L4.00719 9.3066L2.86692 14.3503L7.16377 11.6742Z" fill="#FFCC34" />
+                  </svg>
+                  <span class="text-[#595959]">4.4</span>
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex space-x-3">
+                  <div class="w-6">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1_51)">
+                        <path d="M11.1562 8.71484V4.46484L9.03125 2.33984L6.90625 4.46484V5.88151H2.65625V15.7982H15.4062V8.71484H11.1562ZM5.48958 14.3815H4.07292V12.9648H5.48958V14.3815ZM5.48958 11.5482H4.07292V10.1315H5.48958V11.5482ZM5.48958 8.71484H4.07292V7.29818H5.48958V8.71484ZM9.73958 14.3815H8.32292V12.9648H9.73958V14.3815ZM9.73958 11.5482H8.32292V10.1315H9.73958V11.5482ZM9.73958 8.71484H8.32292V7.29818H9.73958V8.71484ZM9.73958 5.88151H8.32292V4.46484H9.73958V5.88151ZM13.9896 14.3815H12.5729V12.9648H13.9896V14.3815ZM13.9896 11.5482H12.5729V10.1315H13.9896V11.5482Z" fill="#595959" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_1_51">
+                          <rect width="17" height="17" fill="white" transform="translate(0.53125 0.923828)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">4 kms from Brisbane City, QLD</p>
+                </div>
+                <div class="flex space-x-3">
+                  <div class="w-6 pl-1">
+                    <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.02865 0.691406C2.2874 0.691406 0.0703125 2.90849 0.0703125 5.64974C0.0703125 9.36849 5.02865 14.8581 5.02865 14.8581C5.02865 14.8581 9.98698 9.36849 9.98698 5.64974C9.98698 2.90849 7.7699 0.691406 5.02865 0.691406ZM5.02865 7.42057C4.05115 7.42057 3.25781 6.62724 3.25781 5.64974C3.25781 4.67224 4.05115 3.87891 5.02865 3.87891C6.00615 3.87891 6.79948 4.67224 6.79948 5.64974C6.79948 6.62724 6.00615 7.42057 5.02865 7.42057Z" fill="#595959" />
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">Queensland, QLD</p>
+                </div>
+                <div class="flex space-x-6">
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">Licensed</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">ABN</p>
+                  </div>
+                </div>
+                <div class="flex flex-wrap -m-1">
+                  <a href="" class="tag m-1">Architectural Homes</a>
+                  <a href="" class="tag m-1">Commercial</a>
+                  <a href="" class="tag m-1">Garages</a>
+                  <a href="" class="tag m-1">Civil works management</a>
+                </div>
+              </div>
+            </div>
+            <div class="flex -m-2">
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                    <img src="../../assets/images/pro1.png" alt="pro1" class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                    <img src="../../assets/images/pro2.png" alt="pro2" class="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div class="w-1/3 p-2">
+                <div class="g_box">
+                    <img src="../../assets/images/pro3.png" alt="pro3" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="p-3 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+          <div class="card">
+            <div class="w-full space-y-3">
+              <div class="flex items-center space-x-2">
+                <div class="pro_img">
+                  <img src="../../assets/images/card_pro3.png" alt="" class="w-full h-full object-cover">
+                </div>
+                <p class="text-sm text-[#222222] font-medium">David N</p>
+                <span class="flex items-center space-x-1">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16377 11.6742L11.4607 14.3503L10.3204 9.3066L14.1166 5.91308L9.11752 5.47543L7.16377 0.71875L5.21002 5.47543L0.210938 5.91308L4.00719 9.3066L2.86692 14.3503L7.16377 11.6742Z" fill="#FFCC34" />
+                  </svg>
+                  <span class="text-[#595959]">4.4</span>
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1_51)">
+                        <path d="M11.1562 8.71484V4.46484L9.03125 2.33984L6.90625 4.46484V5.88151H2.65625V15.7982H15.4062V8.71484H11.1562ZM5.48958 14.3815H4.07292V12.9648H5.48958V14.3815ZM5.48958 11.5482H4.07292V10.1315H5.48958V11.5482ZM5.48958 8.71484H4.07292V7.29818H5.48958V8.71484ZM9.73958 14.3815H8.32292V12.9648H9.73958V14.3815ZM9.73958 11.5482H8.32292V10.1315H9.73958V11.5482ZM9.73958 8.71484H8.32292V7.29818H9.73958V8.71484ZM9.73958 5.88151H8.32292V4.46484H9.73958V5.88151ZM13.9896 14.3815H12.5729V12.9648H13.9896V14.3815ZM13.9896 11.5482H12.5729V10.1315H13.9896V11.5482Z" fill="#595959" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_1_51">
+                          <rect width="17" height="17" fill="white" transform="translate(0.53125 0.923828)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">4 kms from Brisbane City, QLD</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 pl-1">
+                    <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.02865 0.691406C2.2874 0.691406 0.0703125 2.90849 0.0703125 5.64974C0.0703125 9.36849 5.02865 14.8581 5.02865 14.8581C5.02865 14.8581 9.98698 9.36849 9.98698 5.64974C9.98698 2.90849 7.7699 0.691406 5.02865 0.691406ZM5.02865 7.42057C4.05115 7.42057 3.25781 6.62724 3.25781 5.64974C3.25781 4.67224 4.05115 3.87891 5.02865 3.87891C6.00615 3.87891 6.79948 4.67224 6.79948 5.64974C6.79948 6.62724 6.00615 7.42057 5.02865 7.42057Z" fill="#595959" />
+                    </svg>
+                  </div>
+                  <p class="text-[#595959] text-sm">Queensland, QLD</p>
+                </div>
+                <div class="flex space-x-6">
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">Licensed</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <div class="w-6">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_16)">
+                          <path d="M8.03125 1.87109C4.58125 1.87109 1.78125 4.67109 1.78125 8.12109C1.78125 11.5711 4.58125 14.3711 8.03125 14.3711C11.4812 14.3711 14.2812 11.5711 14.2812 8.12109C14.2812 4.67109 11.4812 1.87109 8.03125 1.87109ZM8.03125 13.1211C5.275 13.1211 3.03125 10.8773 3.03125 8.12109C3.03125 5.36484 5.275 3.12109 8.03125 3.12109C10.7875 3.12109 13.0312 5.36484 13.0312 8.12109C13.0312 10.8773 10.7875 13.1211 8.03125 13.1211ZM10.9 5.35859L6.78125 9.47734L5.1625 7.86484L4.28125 8.74609L6.78125 11.2461L11.7812 6.24609L10.9 5.35859Z" fill="#32C438" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_16">
+                            <rect width="15" height="15" fill="white" transform="translate(0.53125 0.621094)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <p class="text-[#595959] text-sm">ABN</p>
+                  </div>
+                </div>
+                <div class="flex flex-wrap -m-1">
+                  <a href="" class="tag m-1">Architectural Homes</a>
+                  <a href="" class="tag m-1">Commercial</a>
+                  <a href="" class="tag m-1">Garages</a>
+                  <a href="" class="tag m-1">Civil works management</a>
+                </div>
+              </div>
+            </div>
+            <div class="w-full rounded-md bg-[#F5F5F5] p-3 space-y-2">
+              <div class="flex items-start space-x-2">
+                <div class="pt-1">
+                  <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.903809 5.7487V12.832H4.44548V8.58203H7.27881V12.832H10.8205V5.7487L5.86214 2.20703L0.903809 5.7487Z" fill="#595959" />
+                    <path d="M7.27881 0.0820312V1.47745L12.2371 5.01911V5.7487H13.6538V7.16536H12.2371V8.58203H13.6538V9.9987H12.2371V12.832H16.4871V0.0820312H7.27881ZM13.6538 4.33203H12.2371V2.91536H13.6538V4.33203Z" fill="#595959" />
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs text-[#222222] font-medium">Job types</p>
+                  <p class="text-xs text-[#595959] font-medium">Residential | Commercial | Civil </p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-2">
+                <div class="pt-1">
+                  <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1_199)">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7689 7.81286C13.7669 7.81286 14.5986 7.09058 14.8401 6.12009H10.6977C10.9391 7.09058 11.7708 7.81286 12.7689 7.81286Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4841 5.55588H15.0612C15.206 5.55588 15.3241 5.43172 15.3241 5.27939V5.26811C15.3241 5.11576 15.206 4.99163 15.0612 4.99163H14.9163C14.9163 4.15653 14.4817 3.43993 13.8431 3.04496V3.581C13.8431 3.73898 13.7251 3.86312 13.5748 3.86312C13.4246 3.86312 13.3065 3.73898 13.3065 3.581V2.81361C13.1348 2.76847 12.9578 2.73462 12.7699 2.73462C12.5821 2.73462 12.4051 2.76847 12.2334 2.81361V3.581C12.2334 3.73898 12.1153 3.86312 11.9651 3.86312C11.8148 3.86312 11.6968 3.73898 11.6968 3.581V3.04496C11.0582 3.43993 10.6236 4.15653 10.6236 4.99163H10.4841C10.3392 4.99163 10.2212 5.11576 10.2212 5.26811V5.28504C10.2212 5.43172 10.3392 5.55588 10.4841 5.55588Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2953 12.247H17.0635V11.1451C17.0635 9.67962 14.2035 8.94138 12.7708 8.94138C12.4184 8.94138 11.9795 8.9861 11.5181 9.0753C12.1247 9.51669 12.5189 10.0555 12.5189 10.6913V12.2469L11.2953 12.247Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.92427 6.91795C7.10253 6.91795 8.0844 6.06525 8.36944 4.91953H3.4791C3.76414 6.06525 4.74601 6.91795 5.92427 6.91795Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.22696 4.25342H8.6305C8.80151 4.25342 8.94087 4.10685 8.94087 3.92702V3.91369C8.94087 3.73384 8.80151 3.58729 8.6305 3.58729H8.45944C8.45944 2.60142 7.94637 1.75542 7.19252 1.28913V1.92196C7.19252 2.10847 7.05316 2.25502 6.87578 2.25502C6.6984 2.25502 6.55903 2.10847 6.55903 1.92196V1.01601C6.35633 0.962728 6.14731 0.92276 5.92555 0.92276C5.70384 0.92276 5.49482 0.962728 5.29212 1.01601V1.92196C5.29212 2.10847 5.15275 2.25502 4.97537 2.25502C4.79799 2.25502 4.65863 2.10847 4.65863 1.92196V1.28913C3.90478 1.75542 3.39171 2.60142 3.39171 3.58729H3.22696C3.05596 3.58729 2.9166 3.73384 2.9166 3.91369V3.93368C2.9166 4.10685 3.05596 4.25342 3.22696 4.25342Z" fill="#595959" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.562988 10.9148C0.562988 9.14284 4.13799 8.25024 5.92884 8.25024C7.71969 8.25024 11.2947 9.14284 11.2947 10.9148V12.2471H0.562988V10.9148Z" fill="#595959" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1_199">
+                        <rect width="17" height="11.9" fill="white" transform="translate(0.195801 0.427734)" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs text-[#222222] font-medium">Resources</p>
+                  <p class="text-xs text-[#595959] font-medium">Tradesman: 4 | Apprentice: 5 | Labourer: 3 </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
