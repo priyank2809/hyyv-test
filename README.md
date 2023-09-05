@@ -1,6 +1,6 @@
 # Hyyv
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.7.
+Angular application that fetches trades, allows searching, and manages the state using NgRx, responsive UI, version 16.1.7.
 
 ## Development server
 
