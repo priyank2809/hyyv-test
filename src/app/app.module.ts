@@ -24,7 +24,7 @@ import { TradeEffects } from './store/trade.effects';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutes),
+    RouterModule.forRoot(AppRoutes, { useHash: true }),
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
